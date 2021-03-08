@@ -1,30 +1,31 @@
-// функции изменения состояния  
-// import types from './contacts-types';
 import { createAction } from '@reduxjs/toolkit';
 
-const addItems = createAction('contacts/add_item')
 
+const itemAddRequest= createAction('contacts/itemAddRequest');
+const itemAddSuccess= createAction('contacts/itemAddSuccess');
+const itemAddError= createAction('contacts/itemAddError');
 
-// const addItems = item =>({
-//     type: types.ADD_ITEMS,
-//     payload: item,
-// })
+const itemRemoveRequest= createAction('contacts/itemRemoveRequest');
+const itemRemoveSuccess= createAction('contacts/itemRemoveSuccess');
+const itemRemoveError= createAction('contacts/itemRemoveError');
 
-const removeItem = createAction('contacts/remove_item')
- 
-// const removeItem = itemId=>({
-//     type: types.REMOVE_ITEM,
-//     payload: itemId,
-// })
+const itemGetRequest= createAction('contacts/itemGetRequest');
+const itemGetSuccess= createAction('contacts/itemGetSuccess');
+const itemGetError= createAction('contacts/itemGetError');
 
 const filterItems = createAction('contacts/filter_items')
 
-// const filterItems = value =>({
-//     type: types.FILTER_ITEMS,
-//     payload:value,
-// })
-
-
-
 // eslint-disable-next-line import/no-anonymous-default-export
- export default { addItems, removeItem, filterItems }; 
+ export default { 
+    itemAddRequest,
+    itemAddSuccess,
+    itemAddError, 
+    itemRemoveRequest,
+    itemRemoveSuccess,
+    itemRemoveError, 
+    filterItems,
+    itemGetRequest,
+    itemGetSuccess,
+    itemGetError
+    }; 
+

@@ -2,15 +2,22 @@ import {combineReducers} from 'redux';
 import  actions from './contacts-actions';
 import { createReducer } from '@reduxjs/toolkit';
 
-
-// const contactsinitialState = {
-//     items:[], 
-//     filter:'',
-// }
+const {itemAddRequest,
+     itemAddSuccess, 
+     itemAddError,
+     itemRemoveRequest,
+     itemRemoveSuccess,
+     itemRemoveError,
+     itemGetRequest,
+     itemGetSuccess,
+     itemGetError,
+    
+    }= actions;
 
 const itemsReducer = createReducer([], {
-    [actions.addItems]:(state, {payload})=>[...state, payload],
-    [actions.removeItem]: ( state, {payload}) => state.filter((item)=>item.id !== payload),
+    [actions.itemGetSuccess]:(_, {payload})=> payload,
+    [actions.itemAddSuccess]:(state, {payload})=>[...state, payload],
+    [actions.itemRemoveSuccess]: ( state, {payload}) => state.filter((item)=>item.id !== payload),
 })
 
 // const itemsReducer = ( state=[], {type, payload}) => {
@@ -38,8 +45,20 @@ const filterReducer= createReducer('',{
 //             return state;
 //     }
 // };
+const loading = createReducer(false, {
+    [itemAddRequest]: ()=> true,
+    [itemAddSuccess]: ()=> false,
+    [itemAddError]: ()=> false,
+    [itemRemoveRequest]: ()=> true,
+    [itemRemoveSuccess]: ()=> false,
+    [itemRemoveError]: ()=> false,
+    [itemGetRequest]: ()=> true,
+    [itemGetSuccess]: ()=> false,
+    [itemGetError]: ()=> false,
+})
 
 export default combineReducers({
-    items:itemsReducer,
+    items: itemsReducer,
     filter: filterReducer,
+    loading,
 })

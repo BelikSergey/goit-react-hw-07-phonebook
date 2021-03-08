@@ -1,9 +1,10 @@
 import PropTypes from "prop-types";
 import {connect}  from 'react-redux';
-import ContactsActions from '../../redux/contacts/contacts-actions'
+import ContactsActions from '../../redux/contacts/contacts-operations'
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import s from "./ContactsList.module.css";
 import ContactListItem from './ContactListItem'
+import ContactsSelectors from '../../redux/contacts/contacts-selectors'
 
 
 function  ContactsList({ contacts, onRemove}) {
@@ -28,17 +29,13 @@ ContactsList.propTypes = {
   onRemove: PropTypes.func,
   contacts: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.string.isRequired,
+      id: PropTypes.number.isRequired,
     })
   ),
 };
-const filterContacts = (contacts, filter) => {
-    return contacts.filter((contact) =>
-      contact.name.toLowerCase().includes(filter.toLowerCase())
-    );
-  };
-const mapStateToProps = ({contacts:{items, filter}}) => ({
-  contacts: filterContacts(items, filter),
+
+const mapStateToProps = (state) => ({
+  contacts: ContactsSelectors.visibleFilteredContacts(state),
 })
 
 const mapDispatchToProps = dispatch => ({

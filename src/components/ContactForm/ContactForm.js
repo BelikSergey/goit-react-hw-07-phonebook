@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import {connect}  from 'react-redux';
-import ContactsActions from '../../redux/contacts/contacts-actions'
+import ContactsOperations from '../../redux/contacts/contacts-operations'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { nanoid } from "nanoid";
 import s from "./ContactForm.module.css";
-// import PropTypes from 'prop-types';
+import ContactsSelectors from '../../redux/contacts/contacts-selectors'
+
 
 class ContactForm extends Component {
   state = {
@@ -25,7 +25,8 @@ class ContactForm extends Component {
     const isValidForm = this.validateForm(name, number);
     if (isValidForm) {
       // console.log('форма прошла валидацию и отправила item');
-      this.props.onSubmit({ id: nanoid(), name, number });
+      // this.props.onSubmit({ id: nanoid(), name, number });
+      this.props.onSubmit({ name, number });
     } else return;
     this.reset();
   };
@@ -37,7 +38,6 @@ class ContactForm extends Component {
           autoClose: 2000,
           hideProgressBar: true,
           pauseOnHover: false,
-          // draggable: false,
           position: "top-right",
       })
         return;
@@ -92,13 +92,13 @@ class ContactForm extends Component {
     );
   }
 }
-const mapStateToProps = ({contacts:{items}}) => ({
-  contacts: items,
+const mapStateToProps = (state) => ({
+  contacts: ContactsSelectors.AllContacts(state),
 })
 
 
 const mapDispatchToProps = dispatch =>({
-  onSubmit: (item)=> dispatch(ContactsActions.addItems(item))
+  onSubmit: (item)=> dispatch(ContactsOperations.addItem(item))
 })
 
  export default connect(mapStateToProps, mapDispatchToProps)(ContactForm)
