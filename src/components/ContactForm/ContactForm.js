@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import {connect}  from 'react-redux';
-import ContactsOperations from '../../redux/contacts/contacts-operations'
+import сontactsOperations from '../../redux/contacts/contacts-operations'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import s from "./ContactForm.module.css";
-import ContactsSelectors from '../../redux/contacts/contacts-selectors'
+import сontactsSelectors from '../../redux/contacts/contacts-selectors'
 
 
 class ContactForm extends Component {
@@ -93,12 +93,12 @@ class ContactForm extends Component {
   }
 }
 const mapStateToProps = (state) => ({
-  contacts: ContactsSelectors.AllContacts(state),
+  contacts: сontactsSelectors.AllContacts(state),
 })
 
 
 const mapDispatchToProps = dispatch =>({
-  onSubmit: (item)=> dispatch(ContactsOperations.addItem(item))
+  onSubmit: (item)=> dispatch(сontactsOperations.addItem(item))
 })
 
  export default connect(mapStateToProps, mapDispatchToProps)(ContactForm)

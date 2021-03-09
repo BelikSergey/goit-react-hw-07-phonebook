@@ -1,6 +1,6 @@
 import styles from '../../App.module.css'
 import {connect}  from 'react-redux';
-import ContactsActions from '../../redux/contacts/contacts-actions'
+import сontactsActions from '../../redux/contacts/contacts-actions'
 import contactsSelectors from '../../redux/contacts/contacts-selectors'
 
 const Filter = ({ filter, onChange }) => {
@@ -20,7 +20,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  onChange:(event)=> dispatch(ContactsActions.filterItems(event.target.value))
+  onChange:(event)=> dispatch(сontactsActions.filterItems(event.target.value))
 })
 
 

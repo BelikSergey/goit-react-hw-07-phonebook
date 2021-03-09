@@ -1,10 +1,10 @@
 import PropTypes from "prop-types";
 import {connect}  from 'react-redux';
-import ContactsActions from '../../redux/contacts/contacts-operations'
+import сontactsActions from '../../redux/contacts/contacts-operations'
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import s from "./ContactsList.module.css";
 import ContactListItem from './ContactListItem'
-import ContactsSelectors from '../../redux/contacts/contacts-selectors'
+import сontactsSelectors from '../../redux/contacts/contacts-selectors'
 
 
 function  ContactsList({ contacts, onRemove}) {
@@ -35,11 +35,11 @@ ContactsList.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  contacts: ContactsSelectors.visibleFilteredContacts(state),
+  contacts: сontactsSelectors.visibleFilteredContacts(state),
 })
 
 const mapDispatchToProps = dispatch => ({
-  onRemove: (id)=> dispatch(ContactsActions.removeItem(id))
+  onRemove: (id)=> dispatch(сontactsActions.removeItem(id))
 })
 
 
